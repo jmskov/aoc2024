@@ -26,7 +26,6 @@ pub fn part_two(input: &str) -> Option<u32> {
         let sidx = start_idx.unwrap() as usize;
         // 1. Find the next don't() ...
         let stop_idx = input[sidx..slen].find("don't()").map(|idx| idx + sidx);
-        println!("Start: {}, Stop: {:?}", sidx, stop_idx);
         // Process substring up until then
         if let Some(eidx) = stop_idx {
             sum += extract_mul(&input[sidx..eidx]);
@@ -54,7 +53,8 @@ mod tests {
 
     #[test]
     fn test_part_two() {
-        let result = part_two(&advent_of_code::template::read_file("examples", DAY));
+        let input = "xmul(2,4)&mul[3,7]!^don't()_mul(5,5)+mul(32,64](mul(11,8)undo()?mul(8,5))";
+        let result = part_two(&input);
         assert_eq!(result, Some(48));
     }
 }
